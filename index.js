@@ -34,8 +34,18 @@ async function run() {
                   const products = await cursor.toArray();
                   res.send(products);
             });
+            // get 6 products
+            app.get('/6products', async (req, res) => {
+                  const query = {};
+                  const cursor = userCollection
+                        .find(query)
+                        .sort({ _id: 1 })
+                        .limit(6);;
+                  const products = await cursor.toArray();
+                  res.send(products);
+            });
 
-            
+
       } finally {
             //connection close
             //await client.close();
