@@ -23,29 +23,43 @@ const client = new MongoClient(uri, {
 async function run() {
       try {
             await client.connect();
-            const userCollection = client
+            const productCollection = client
                   .db('Warehouse')
                   .collection('products');
+            const blogCollection = client.db('Warehouse').collection('blogs');
 
             // get products
             app.get('/products', async (req, res) => {
                   const query = {};
-                  const cursor = userCollection.find(query);
+                  const cursor = productCollection.find(query);
+                  const products = await cursor.toArray();
+                  res.send(products);
+            });
+            // get products
+            app.get('/blogs', async (req, res) => {
+                  const query = {};
+                  const cursor = blogCollection.find(query);
                   const products = await cursor.toArray();
                   res.send(products);
             });
             // get 6 products
             app.get('/6products', async (req, res) => {
                   const query = {};
-                  const cursor = userCollection
+                  const cursor = productCollection
                         .find(query)
                         .sort({ _id: 1 })
-                        .limit(6);;
+                        .limit(6);
                   const products = await cursor.toArray();
                   res.send(products);
             });
 
-
+            // delete a products
+            app.delete('/products/:id', async (req, res) => {
+                  const id = req.params.id;
+                  const query = { _id: ObjectId(id) };
+                  const result = await productCollection.deleteOne(query);
+                  res.send(result);
+            });
       } finally {
             //connection close
             //await client.close();
