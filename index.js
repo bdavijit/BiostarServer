@@ -54,12 +54,12 @@ async function run() {
                               image: updatedProduct.image,
                               description: updatedProduct.description,
                               price: updatedProduct.price,
-                              quantity: updatedProduct.quantity,
+                              quantity: updatedProduct.quantity - 1,
                               supplier_name: updatedProduct.supplier_name,
                               sold: updatedProduct.sold,
                         },
                   };
-                  const result = await ProductCollection.updateOne(
+                  const result = await productCollection.updateOne(
                         filter,
                         updatedDoc,
                         options
