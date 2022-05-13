@@ -28,6 +28,14 @@ async function run() {
                   .collection('products');
             const blogCollection = client.db('Warehouse').collection('blogs');
 
+            // add a new Product 
+            app.post('/Product', async (req, res) => {
+                  const newUser = req.body;
+                 
+                  const result = await productCollection.insertOne(newUser);
+                  res.send(result);
+            });
+
             // get products
             app.get('/products', async (req, res) => {
                   const query = {};
@@ -78,7 +86,8 @@ async function run() {
                               description: updatedProduct.description,
                               price: updatedProduct.price,
                               quantity:
-                                    parseInt(updatedProduct.quantity) + parseInt(updatedProduct.add),
+                                    parseInt(updatedProduct.quantity) +
+                                    parseInt(updatedProduct.add),
                               supplier_name: updatedProduct.supplier_name,
                               sold: updatedProduct.sold,
                         },
