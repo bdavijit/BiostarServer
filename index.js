@@ -42,7 +42,7 @@ async function run() {
                   res.send(result);
             });
 
-            // update Product
+            // delivered Product
             app.put('/Product/:id', async (req, res) => {
                   const id = req.params.id;
                   const updatedProduct = req.body;
@@ -55,6 +55,30 @@ async function run() {
                               description: updatedProduct.description,
                               price: updatedProduct.price,
                               quantity: updatedProduct.quantity - 1,
+                              supplier_name: updatedProduct.supplier_name,
+                              sold: updatedProduct.sold,
+                        },
+                  };
+                  const result = await productCollection.updateOne(
+                        filter,
+                        updatedDoc,
+                        options
+                  );
+                  res.send(result);
+            });
+            app.put('/AddProduct/:id', async (req, res) => {
+                  const id = req.params.id;
+                  const updatedProduct = req.body;
+                  const filter = { _id: ObjectId(id) };
+                  const options = { upsert: true };
+                  const updatedDoc = {
+                        $set: {
+                              name: updatedProduct.name,
+                              image: updatedProduct.image,
+                              description: updatedProduct.description,
+                              price: updatedProduct.price,
+                              quantity:
+                                    parseInt(updatedProduct.quantity) + parseInt(updatedProduct.add),
                               supplier_name: updatedProduct.supplier_name,
                               sold: updatedProduct.sold,
                         },
