@@ -28,10 +28,18 @@ async function run() {
                   .collection('products');
             const blogCollection = client.db('Warehouse').collection('blogs');
 
-            // add a new Product 
+            // delete a Product
+            app.delete('/Product/:id', async (req, res) => {
+                  const id = req.params.id;
+                  const query = { _id: ObjectId(id) };
+                  const result = await productCollection.deleteOne(query);
+                  res.send(result);
+            });
+
+            // add a new Product
             app.post('/Product', async (req, res) => {
                   const newUser = req.body;
-                 
+
                   const result = await productCollection.insertOne(newUser);
                   res.send(result);
             });
