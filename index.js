@@ -35,13 +35,38 @@ async function run() {
                   const products = await cursor.toArray();
                   res.send(products);
             });
-                    app.get('/products/:id', async (req, res) => {
-                          const id = req.params.id;
-                          const query = { _id: ObjectId(id) };
-                          const result = await productCollection.findOne(query);
-                          res.send(result);
-                    });
-  
+            app.get('/products/:id', async (req, res) => {
+                  const id = req.params.id;
+                  const query = { _id: ObjectId(id) };
+                  const result = await productCollection.findOne(query);
+                  res.send(result);
+            });
+
+            // update Product
+            app.put('/Product/:id', async (req, res) => {
+                  const id = req.params.id;
+                  const updatedProduct = req.body;
+                  const filter = { _id: ObjectId(id) };
+                  const options = { upsert: true };
+                  const updatedDoc = {
+                        $set: {
+                              name: updatedProduct.name,
+                              image: updatedProduct.image,
+                              description: updatedProduct.description,
+                              price: updatedProduct.price,
+                              quantity: updatedProduct.quantity,
+                              supplier_name: updatedProduct.supplier_name,
+                              sold: updatedProduct.sold,
+                        },
+                  };
+                  const result = await ProductCollection.updateOne(
+                        filter,
+                        updatedDoc,
+                        options
+                  );
+                  res.send(result);
+            });
+
             // get products
             app.get('/blogs', async (req, res) => {
                   const query = {};
