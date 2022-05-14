@@ -9,12 +9,11 @@ const port = process.env.PORT || 5001;
 //use Middleware
 app.use(cors());
 app.use(express.json());
+require('dotenv').config();
 
-//user: bdavijit01
-//passWord: Dzo3AL87HCW2MTAR
 
 const uri =
-      'mongodb+srv://bdavijit01:Dzo3AL87HCW2MTAR@cluster0.wykix.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+      `mongodb+srv://${process.env.APP_Key}:${process.env.APP_pass}@cluster0.wykix.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -72,7 +71,7 @@ async function run() {
                               price: updatedProduct.price,
                               quantity: updatedProduct.quantity - 1,
                               supplier_name: updatedProduct.supplier_name,
-                              sold: updatedProduct.sold,
+                              sold: updatedProduct.sold + 1,
                         },
                   };
                   const result = await productCollection.updateOne(
