@@ -1,8 +1,9 @@
 [
       {
             "name": "a1",
-            "image": "",
+            "image": "https://www.biostar.com.tw/upload/Motherboard/bBIOSTAR_Z690_VALKYRIE_MB_45_light_TpbN.png",
             "description": "",
+            "minimumOrder": 10,
             "price": 120,
             "quantity": 10,
             "supplier_name": "",
@@ -10,8 +11,9 @@
       },
       {
             "name": "a2",
-            "image": "",
+            "image": "https://www.biostar.com.tw/upload/Motherboard/bBIOSTAR_Z690_VALKYRIE_MB_45_light_TpbN.png",
             "description": "",
+            "minimumOrder": 10,
             "price": 120,
             "quantity": 10,
             "supplier_name": "",
@@ -19,8 +21,9 @@
       },
       {
             "name": "a3",
-            "image": "",
+            "image": "https://www.biostar.com.tw/upload/Motherboard/bBIOSTAR_Z690_VALKYRIE_MB_45_light_TpbN.png",
             "description": "",
+            "minimumOrder": 10,
             "price": 120,
             "quantity": 10,
             "supplier_name": "",
@@ -28,8 +31,9 @@
       },
       {
             "name": "a4",
-            "image": "",
+            "image": "https://www.biostar.com.tw/upload/Motherboard/bBIOSTAR_Z690_VALKYRIE_MB_45_light_TpbN.png",
             "description": "",
+            "minimumOrder": 10,
             "price": 120,
             "quantity": 10,
             "supplier_name": "",
@@ -37,8 +41,9 @@
       },
       {
             "name": "a5",
-            "image": "",
+            "image": "https://www.biostar.com.tw/upload/Motherboard/bBIOSTAR_Z690_VALKYRIE_MB_45_light_TpbN.png",
             "description": "",
+            "minimumOrder": 10,
             "price": 120,
             "quantity": 10,
             "supplier_name": "",
@@ -46,8 +51,9 @@
       },
       {
             "name": "a6",
-            "image": "",
+            "image": "https://www.biostar.com.tw/upload/Motherboard/bBIOSTAR_Z690_VALKYRIE_MB_45_light_TpbN.png",
             "description": "",
+            "minimumOrder": 10,
             "price": 120,
             "quantity": 10,
             "supplier_name": "",
@@ -55,8 +61,9 @@
       },
       {
             "name": "a7",
-            "image": "",
+            "image": "https://www.biostar.com.tw/upload/Motherboard/bBIOSTAR_Z690_VALKYRIE_MB_45_light_TpbN.png",
             "description": "",
+            "minimumOrder": 10,
             "price": 120,
             "quantity": 10,
             "supplier_name": "",
@@ -64,8 +71,9 @@
       },
       {
             "name": "a8",
-            "image": "",
+            "image": "https://www.biostar.com.tw/upload/Motherboard/bBIOSTAR_Z690_VALKYRIE_MB_45_light_TpbN.png",
             "description": "",
+            "minimumOrder": 10,
             "price": 120,
             "quantity": 10,
             "supplier_name": "",
@@ -73,8 +81,9 @@
       },
       {
             "name": "a9",
-            "image": "",
+            "image": "https://www.biostar.com.tw/upload/Motherboard/bBIOSTAR_Z690_VALKYRIE_MB_45_light_TpbN.png",
             "description": "",
+            "minimumOrder": 10, 
             "price": 120,
             "quantity": 10,
             "supplier_name": "",
