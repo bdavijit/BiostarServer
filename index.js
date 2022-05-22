@@ -28,14 +28,25 @@ async function run() {
             const blogCollection = client.db('BioStar').collection('blogs');
 
             // get all products
-            
+            //http://localhost:5001/products?page=0&size=3
             app.get('/products', async (req, res) => {
+                  const page = parseInt(req.query.page);
+                  const size = parseInt(req.query.size);
+
                   const query = {};
                   const cursor = productCollection.find(query);
-                  const products = await cursor.toArray();
+
+                  let products;
+                  if (page || size) {
+                        products = await cursor
+                              .skip(page * size)
+                              .limit(size)
+                              .toArray();
+                  } else {
+                        products = await cursor.toArray();
+                  }
                   res.send(products);
             });
-
       } finally {
             //connection close
             //await client.close();
