@@ -23,9 +23,9 @@ async function run() {
       try {
             await client.connect();
             const productCollection = client
-                  .db('Warehouse')
+                  .db('BioStar')
                   .collection('products');
-            const blogCollection = client.db('Warehouse').collection('blogs');
+            const blogCollection = client.db('BioStar').collection('blogs');
 
             // delete a Product
             app.delete('/Product/:id', async (req, res) => {
