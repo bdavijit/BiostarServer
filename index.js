@@ -27,15 +27,21 @@ async function run() {
                   .collection('products');
             const blogCollection = client.db('BioStar').collection('blogs');
             const reviewCollection = client.db('BioStar').collection('reviews');
+            const OrderCollection = client.db('BioStar').collection('Order');
+            // add a new Order
+            app.post('/Orders', async (req, res) => {
+                  const newUser = req.body;
 
-                        app.get('/products/:id', async (req, res) => {
-                              const id = req.params.id;
-                              const query = { _id: ObjectId(id) };
-                              const result = await productCollection.findOne(
-                                    query
-                              );
-                              res.send(result);
-                        });
+                  const result = await OrderCollection.insertOne(newUser);
+                  res.send(result);
+            });
+
+            app.get('/products/:id', async (req, res) => {
+                  const id = req.params.id;
+                  const query = { _id: ObjectId(id) };
+                  const result = await productCollection.findOne(query);
+                  res.send(result);
+            });
 
             // get all reviews
             //http://localhost:5001/reviews?page=0&size=3
