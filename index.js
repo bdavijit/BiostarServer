@@ -11,9 +11,7 @@ app.use(cors());
 app.use(express.json());
 require('dotenv').config();
 
-
-const uri =
-      `mongodb+srv://${process.env.APP_Key}:${process.env.APP_pass}@cluster0.wykix.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.APP_Key}:${process.env.APP_pass}@cluster0.wykix.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -28,10 +26,19 @@ async function run() {
             const blogCollection = client.db('BioStar').collection('blogs');
             const reviewCollection = client.db('BioStar').collection('reviews');
             const OrderCollection = client.db('BioStar').collection('Order');
-            // add a new Order
-            app.post('/Orders', async (req, res) => {
-                  const newUser = req.body;
 
+            // get Orders
+            app.get('/Orders/:email', async (req, res) => {
+                  const email = req.params.email;
+                  const query = { email : email};
+                  const cursor = OrderCollection.find(query);
+                  const Orders = await cursor.toArray();
+                  res.send(Orders);
+            });
+            // add a new Order
+            app.post('/Order', async (req, res) => {
+                  const newUser = req.body;
+                  
                   const result = await OrderCollection.insertOne(newUser);
                   res.send(result);
             });
