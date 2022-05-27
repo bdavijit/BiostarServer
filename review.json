@@ -1,0 +1,43 @@
+[
+    {
+          "name": "R1",
+          "image": "",
+          "review": "14.1 How will you improve the performance of a React Application?14.2 What are the different ways to manage a state in a React application?14.3 How does prototypical inheritance work?14.4 Why you do not set the state directly in React. For example, if you have",
+          "rate": 4
+    },
+    {
+          "name": "R2",
+          "image": "",
+          "review": "14.1 How will you improve the performance of a React Application?14.2 What are the different ways to manage a state in a React application?14.3 How does prototypical inheritance work?14.4 Why you do not set the state directly in React. For example, if you have",
+          "rate": 4
+    },
+    {
+          "name": "R3",
+          "image": "",
+          "review": "14.1 How will you improve the performance of a React Application?14.2 What are the different ways to manage a state in a React application?14.3 How does prototypical inheritance work?14.4 Why you do not set the state directly in React. For example, if you have",
+          "rate": 4
+    },
+    {
+          "name": "R4",
+          "image": "",
+          "review": "14.1 How will you improve the performance of a React Application?14.2 What are the different ways to manage a state in a React application?14.3 How does prototypical inheritance work?14.4 Why you do not set the state directly in React. For example, if you have",
+          "rate": 4
+    },
+    {
+          "name": "R5",
+          "image": "",
+          "review": "14.1 How will you improve the performance of a React Application?14.2 What are the different ways to manage a state in a React application?14.3 How does prototypical inheritance work?14.4 Why you do not set the state directly in React. For example, if you have",
+          "rate": 4
+    },
+    {
+          "name": "R6",
+          "image": "",
+          "review": "14.1 How will you improve the performance of a React Application?14.2 What are the different ways to manage a state in a React application?14.3 How does prototypical inheritance work?14.4 Why you do not set the state directly in React. For example, if you have",
+          "rate": 4
+    },
+    {
+          "name": "R7",
+          "image": "fgdsfsdfgdsfgds",
+          "rate": 4
+    }
+]

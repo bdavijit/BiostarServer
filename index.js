@@ -26,8 +26,37 @@ async function run() {
                   .db('BioStar')
                   .collection('products');
             const blogCollection = client.db('BioStar').collection('blogs');
+            const reviewCollection = client.db('BioStar').collection('reviews');
 
-            // get all products
+                        app.get('/products/:id', async (req, res) => {
+                              const id = req.params.id;
+                              const query = { _id: ObjectId(id) };
+                              const result = await productCollection.findOne(
+                                    query
+                              );
+                              res.send(result);
+                        });
+
+            // get all reviews
+            //http://localhost:5001/reviews?page=0&size=3
+            app.get('/reviews', async (req, res) => {
+                  const page = parseInt(req.query.page);
+                  const size = parseInt(req.query.size);
+
+                  const query = {};
+                  const cursor = reviewCollection.find(query);
+
+                  let reviews;
+                  if (page || size) {
+                        reviews = await cursor
+                              .skip(page * size)
+                              .limit(size)
+                              .toArray();
+                  } else {
+                        reviews = await cursor.toArray();
+                  }
+                  res.send(reviews);
+            });
             //http://localhost:5001/products?page=0&size=3
             app.get('/products', async (req, res) => {
                   const page = parseInt(req.query.page);
