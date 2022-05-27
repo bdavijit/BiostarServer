@@ -26,11 +26,18 @@ async function run() {
             const blogCollection = client.db('BioStar').collection('blogs');
             const reviewCollection = client.db('BioStar').collection('reviews');
             const OrderCollection = client.db('BioStar').collection('Order');
-
+           
+            // delete a Order
+            app.delete('/Order/:id', async (req, res) => {
+                  const id = req.params.id;
+                  const query = { _id: ObjectId(id) };
+                  const result = await OrderCollection.deleteOne(query);
+                  res.send(result);
+            });
             // get Orders
             app.get('/Orders/:email', async (req, res) => {
                   const email = req.params.email;
-                  const query = { email : email};
+                  const query = { email: email };
                   const cursor = OrderCollection.find(query);
                   const Orders = await cursor.toArray();
                   res.send(Orders);
@@ -38,7 +45,7 @@ async function run() {
             // add a new Order
             app.post('/Order', async (req, res) => {
                   const newUser = req.body;
-                  
+
                   const result = await OrderCollection.insertOne(newUser);
                   res.send(result);
             });
