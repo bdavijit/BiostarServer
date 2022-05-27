@@ -27,6 +27,13 @@ async function run() {
             const reviewCollection = client.db('BioStar').collection('reviews');
             const OrderCollection = client.db('BioStar').collection('Order');
             const userCollection = client.db('BioStar').collection('Users');
+            // add a new Product
+            app.post('/Product', async (req, res) => {
+                  const newProduct = req.body;
+                  const result = await productCollection.insertOne(newProduct);
+                  res.send(result);
+            });
+
             //update profile
             app.put('/user/:email', async (req, res) => {
                   const email = req.params.email;
