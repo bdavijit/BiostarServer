@@ -56,7 +56,12 @@ async function run() {
                   const result = await productCollection.findOne(query);
                   res.send(result);
             });
+            app.post('/review', async (req, res) => {
+                  const newUser = req.body;
 
+                  const result = await reviewCollection.insertOne(newUser);
+                  res.send(result);
+            });
             // get all reviews
             //http://localhost:5001/reviews?page=0&size=3
             app.get('/reviews', async (req, res) => {
