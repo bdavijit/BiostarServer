@@ -91,6 +91,12 @@ async function run() {
                   const result = await productCollection.insertOne(newProduct);
                   res.send(result);
             });
+            // add a new user
+            app.post('/User', async (req, res) => {
+                  const newUser = req.body;
+                  const result = await userCollection.insertOne(newUser);
+                  res.send(result);
+            });
 
             //update profile
             app.put('/user/:email', async (req, res) => {
