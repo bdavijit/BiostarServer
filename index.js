@@ -27,6 +27,33 @@ async function run() {
             const reviewCollection = client.db('BioStar').collection('reviews');
             const OrderCollection = client.db('BioStar').collection('Order');
             const userCollection = client.db('BioStar').collection('Users');
+
+            //update Product
+            app.put('/Product/:id', async (req, res) => {
+                  const id = req.params.id;
+                  const updatedProduct = req.body;
+                  const filter = { _id: ObjectId(id) };
+                  const options = { upsert: true };
+                  const updatedDoc = {
+                        $set: {
+                              name: updatedProduct?.name,
+                              image: updatedProduct?.image,
+                              minimumOrder: updatedProduct?.minimumOrder,
+                              price: updatedProduct?.price,
+                              quantity: updatedProduct?.quantity,
+                              sold: updatedProduct?.sold,
+                              UserEmail: updatedProduct?.UserEmail,
+                              description: updatedProduct?.description,
+                        },
+                  };
+                  const result = await productCollection.updateOne(
+                        filter,
+                        updatedDoc,
+                        options
+                  );
+                  res.send(result);
+            });
+
             // add a new Product
             app.post('/Product', async (req, res) => {
                   const newProduct = req.body;
@@ -71,6 +98,14 @@ async function run() {
                   const cursor = OrderCollection.find(query);
                   const Orders = await cursor.toArray();
                   res.send(Orders);
+            });
+            // get Product
+            app.get('/Product/:email', async (req, res) => {
+                  const email = req.params.email;
+                  const query = { UserEmail: email };
+                  const cursor = productCollection.find(query);
+                  const Product = await cursor.toArray();
+                  res.send(Product);
             });
             // add a new Order
             app.post('/Order', async (req, res) => {
