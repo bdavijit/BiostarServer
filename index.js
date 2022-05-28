@@ -27,7 +27,38 @@ async function run() {
             const reviewCollection = client.db('BioStar').collection('reviews');
             const OrderCollection = client.db('BioStar').collection('Order');
             const userCollection = client.db('BioStar').collection('Users');
-
+            //update profile
+            app.put('/user2/:email', async (req, res) => {
+                  const email = req.params.email;
+                  const updatedUser = req.body;
+                  const filter = { email: email };
+                  const options = { upsert: true };
+                  const updatedDoc = {
+                        $set: {
+                              name: updatedUser?.name,
+                              email: updatedUser?.email,
+                              city: updatedUser?.city,
+                              phone_number: updatedUser?.phone_number,
+                              LinkedIn: updatedUser?.LinkedIn,
+                              education: updatedUser?.education,
+                              role: updatedUser?.role,
+                              userName: '',
+                        },
+                  };
+                  const result = await userCollection.updateOne(
+                        filter,
+                        updatedDoc,
+                        options
+                  );
+                  res.send(result);
+            });
+            // get User
+            app.get('/User', async (req, res) => {
+                  const query = {};
+                  const cursor = userCollection.find(query);
+                  const User = await cursor.toArray();
+                  res.send(User);
+            });
             //update Product
             app.put('/Product/:id', async (req, res) => {
                   const id = req.params.id;
