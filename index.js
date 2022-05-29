@@ -27,9 +27,37 @@ async function run() {
             const reviewCollection = client.db('BioStar').collection('reviews');
             const OrderCollection = client.db('BioStar').collection('Order');
             const userCollection = client.db('BioStar').collection('Users');
+            //order state change
+
+            //update profile
+            app.put('/orders/:pId', async (req, res) => {
+                  const pId = req.params.pId;
+                  const updatedOrder = req.body;
+                  const filter = { pId: pId };
+                  const options = { upsert: true };
+                  const updatedDoc = {
+                        $set: {
+                              pId: updatedOrder?.pId,
+                              paid: updatedOrder?.paid,
+                              pName: updatedOrder?.pName,
+                              pImage: updatedOrder?.pImage,
+                              pPrice: updatedOrder?.pPrice,
+                              email: updatedOrder?.email,
+                              mobile: updatedOrder?.mobile,
+                              Address: updatedOrder?.Address,
+                              status: updatedOrder?.status,
+                        },
+                  };
+                  const result = await OrderCollection.updateOne(
+                        filter,
+                        updatedDoc,
+                        options
+                  );
+                  res.send(result);
+            });
+
             // get all Orders
             app.get('/Orders', async (req, res) => {
-         
                   const query = {};
                   const cursor = OrderCollection.find(query);
                   const Orders = await cursor.toArray();
