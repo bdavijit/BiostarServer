@@ -27,6 +27,14 @@ async function run() {
             const reviewCollection = client.db('BioStar').collection('reviews');
             const OrderCollection = client.db('BioStar').collection('Order');
             const userCollection = client.db('BioStar').collection('Users');
+            // get all Orders
+            app.get('/Orders', async (req, res) => {
+         
+                  const query = {};
+                  const cursor = OrderCollection.find(query);
+                  const Orders = await cursor.toArray();
+                  res.send(Orders);
+            });
 
             // delete a Product
             app.delete('/Product/:id', async (req, res) => {
@@ -35,7 +43,7 @@ async function run() {
                   const result = await productCollection.deleteOne(query);
                   res.send(result);
             });
-            
+
             // get one user
             app.get('/users/:email', async (req, res) => {
                   const Pemail = req.params.email;
