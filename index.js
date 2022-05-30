@@ -29,11 +29,11 @@ async function run() {
             const userCollection = client.db('BioStar').collection('Users');
             //order state change
 
-            //update profile
-            app.put('/orders/:pId', async (req, res) => {
-                  const pId = req.params.pId;
+            //update Order
+            app.put('/orders/:Id', async (req, res) => {
+                  const Id = req.params.Id;
                   const updatedOrder = req.body;
-                  const filter = { pId: pId };
+                  const filter = { _id: ObjectId(Id) };
                   const options = { upsert: true };
                   const updatedDoc = {
                         $set: {
